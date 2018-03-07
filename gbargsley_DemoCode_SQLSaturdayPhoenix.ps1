@@ -16,10 +16,6 @@ Start-Process https://dbatools.io/commands
 
 
 
-
-
-
-
 # Set connection variables
 $SQLServers = "localhost\dev2016", "localhost\prd2016", "localhost\dev2017", "localhost\prd2017"
 $singleServer = "localhost\dev2016"
@@ -113,6 +109,9 @@ $SQLServers | Find-DbaOrphanedFile
 # You can use the same JSON the website uses to check the status of your own environment
 $SQLServers | Get-DbaSqlBuildReference | Format-Table -AutoSize
 $SQLServers | Test-DbaSqlBuild -MaxBehind 2CU | Format-Table -AutoSize
+
+
+Start-Process https://sqlcollaborative.github.io/builds
 
 
 
