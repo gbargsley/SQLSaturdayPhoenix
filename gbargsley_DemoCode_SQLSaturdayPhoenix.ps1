@@ -2,6 +2,14 @@
 clear
 break
 
+
+
+
+
+
+
+
+
 # Load dbatools module
 # Update-Module dbatools -force
 Import-Module dbatools -force
@@ -10,8 +18,17 @@ Import-Module C:\GitHub\dbatools\dbatools.psd1 -Force
 
 
 
+
+
+
+
 # Quick overview of commands
 Start-Process https://dbatools.io/commands
+
+
+
+
+
 
 
 
@@ -25,6 +42,8 @@ $CmsInstance = 'localhost\sql2017'
 $ComputerName = 'DESKTOP-EBH9MR8'
 $dev2016 = "localhost\dev2016"
 $prd2016 = "localhost\prd2016"
+
+
 
 
 # Get connections from Registered Servers (CMS) 
@@ -43,8 +62,6 @@ Get-DbaMaxMemory -SqlInstance $devServers
 Test-DbaMaxMemory -SqlInstance $SQLServers | Format-Table -AutoSize
 Set-DbaMaxMemory -SqlInstance $SQLServers -MaxMB 1024
 Test-DbaMaxMemory -SqlInstance $SQLServers | Format-Table -AutoSize
-
-
 
 
 
@@ -73,23 +90,11 @@ Test-DbaTempDbConfiguration -SqlInstance $dev2016 | Select-Object SqlInstance, R
 
 
 
-
-
 # Startup Parameters
 Get-DbaStartupParameter -SqlInstance $dev2016
-Set-DbaStartupParameter -SqlInstance $dev2016 -TraceFlags 1118,3226 -Confirm:$false
+Set-DbaStartupParameter -SqlInstance $dev2016 -TraceFlags 3226 -Confirm:$false
 
 
-
-
-
-
-
-
-# SQL Agent Jobs
-Get-DbaAgentJob -SqlInstance $dev2016
-Get-DbaAgentJob -SqlInstance $dev2016 | Export-DbaScript -Path C:\temp\jobs.sql
-Start-Process C:\Temp\jobs.sql
 
 
 
@@ -116,6 +121,16 @@ Start-Process https://sqlcollaborative.github.io/builds
 
 
 
+# SQL Agent Jobs
+Get-DbaAgentJob -SqlInstance $dev2016
+Get-DbaAgentJob -SqlInstance $dev2016 | Export-DbaScript -Path C:\temp\jobs.sql
+Start-Process C:\Temp\jobs.sql
+
+
+
+
+
+
 
 
 # Support Tools
@@ -125,7 +140,6 @@ Install-DbaWhoIsActive -SqlInstance $SQLServers -Database DBA
 Invoke-DbaWhoIsActive -SqlInstance $prd2016 -ShowOwnSpid -ShowSystemSpids
 
 Install-DbaFirstResponderKit -SqlInstance $SQLServers -Database DBA
-
 
 
 
