@@ -59,9 +59,9 @@ $RegisteredServers | Select-Object ServerName
 
 # Max Memory Setting
 Get-DbaMaxMemory -SqlInstance $devServers
-Test-DbaMaxMemory -SqlInstance $SQLServers | Format-Table -AutoSize
+Test-DbaMaxMemory -SqlInstance $SQLServers | Out-GridView
 Set-DbaMaxMemory -SqlInstance $SQLServers -MaxMB 1024
-Test-DbaMaxMemory -SqlInstance $SQLServers | Format-Table -AutoSize
+Test-DbaMaxMemory -SqlInstance $SQLServers | Out-GridView
 
 
 
@@ -81,7 +81,7 @@ Compare-Object -ReferenceObject $sourceConfig -DifferenceObject $destConfig -Pro
 
 
 # TempDB Configuration
-Test-DbaTempDbConfiguration -SqlInstance $dev2016 | Select-Object SqlInstance, Rule, Recommended, CurrentSetting, IsBestPractice | Format-Table -AutoSize
+Test-DbaTempDbConfiguration -SqlInstance $dev2016 | Select-Object SqlInstance, Rule, Recommended, CurrentSetting, IsBestPractice | Out-GridView
 
 
 
@@ -113,7 +113,7 @@ $SQLServers | Find-DbaOrphanedFile
 
 # You can use the same JSON the website uses to check the status of your own environment
 $SQLServers | Get-DbaSqlBuildReference | Out-GridView
-$SQLServers | Test-DbaSqlBuild -MaxBehind 1CU | Out-GridView
+$SQLServers | Test-DbaSqlBuild -MaxBehind 2CU | Out-GridView
 
 
 Start-Process https://sqlcollaborative.github.io/builds
