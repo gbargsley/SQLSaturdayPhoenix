@@ -112,8 +112,8 @@ $SQLServers | Find-DbaOrphanedFile
 
 
 # You can use the same JSON the website uses to check the status of your own environment
-$SQLServers | Get-DbaSqlBuildReference | Format-Table -AutoSize
-$SQLServers | Test-DbaSqlBuild -MaxBehind 2CU | Format-Table -AutoSize
+$SQLServers | Get-DbaSqlBuildReference | Out-GridView
+$SQLServers | Test-DbaSqlBuild -MaxBehind 1CU | Out-GridView
 
 
 Start-Process https://sqlcollaborative.github.io/builds
