@@ -3,10 +3,11 @@
 *.ps1
 *.png
 *.jpeg
-*.pptx
+
 *.docx
 *.jpg
 *.xlsx
 *.txt
 *.exe
 *.zip
+*.pptx
