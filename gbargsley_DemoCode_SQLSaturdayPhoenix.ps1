@@ -62,9 +62,10 @@ Start-Process https://sqlcollaborative.github.io/builds
 
 
 # SQL Agent Jobs
-Get-DbaAgentJob -SqlInstance $dev2016
+Get-DbaAgentJob -SqlInstance $dev2016 | Out-GridView
 Get-DbaAgentJob -SqlInstance $dev2016 | Export-DbaScript -Path C:\temp\jobs.sql
 Start-Process C:\Temp\jobs.sql
+Find-DbaAgentJob -SqlInstance $SQLServers -JobName dbatools_magic | Out-GridView
 
 
 # Support Tools
