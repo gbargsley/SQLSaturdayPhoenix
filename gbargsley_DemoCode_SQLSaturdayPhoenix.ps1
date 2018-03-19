@@ -20,6 +20,7 @@ $CmsInstance = 'localhost\sql2017'
 $ComputerName = 'DESKTOP-EBH9MR8'
 $dev2016 = "localhost\dev2016"
 $prd2016 = "localhost\prd2016"
+$prd2017 = "localhost\prd2017"
 
 
 # Get connections from Registered Servers (CMS) 
@@ -52,6 +53,10 @@ Set-DbaStartupParameter -SqlInstance $dev2016 -TraceFlags 3226 -Confirm:$false
 
 # DBA Orphan Files
 $SQLServers | Find-DbaOrphanedFile
+
+# DBA Orphan User
+Get-DbaOrphanUser -SqlInstance $prd2017
+Repair-DbaOrphanUser -SqlInstance $prd2017
 
 
 # You can use the same JSON the website uses to check the status of your own environment
